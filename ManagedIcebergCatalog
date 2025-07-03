@@ -1,0 +1,71 @@
+1. Executive Summary
+Brief Description:
+The initiative aims to implement a managed Apache Iceberg catalog for archival data management, leveraging S3 Glacier Instant Retrieval as the storage layer. The solution will enable efficient, cost-effective, and policy-driven archival of large datasets, supporting cross-engine interoperability (e.g., Spark, Snowflake) and lifecycle management via tagging and schema evolution.
+2. Objectives
+Primary Objective:
+To design and deploy a managed Iceberg catalog (using Polaris Catalog) for archiving historical data, enabling seamless data lifecycle management and cost optimization.
+Secondary Objectives:
+Enable cross-engine data sharing (BYQE) between Spark, Snowflake, and other engines.
+Automate ingestion from tape-restored databases using dynamic, heuristic-based pipelines.
+Support tag-driven archival and schema evolution for long-term data retention.
+3. Scope
+In Scope:
+Implementation of Polaris Catalog (managed and open-sourced options).
+Integration with S3 Glacier Instant Retrieval for storage.
+Data ingestion pipelines from tape-restored sources.
+Tag-based data lifecycle and archival policies.
+Interoperability demonstration between Spark and Snowflake.
+Out of Scope:
+Nessie Catalog (explicitly scoped out).
+Real-time data updates (focus is on historical/archival data).
+4. Key Benefits & Value Proposition
+Cost Savings: Up to 80% storage cost reduction using S3 Glacier and storage tiering.
+Interoperability: Shared open catalog enables cross-engine data access (Spark, Snowflake, Trino, etc.).
+Policy-Driven Lifecycle: Tag-based archival and retention policies.
+Scalability: Supports large-scale, flexible data formats and schema evolution.
+Automation: Heuristic-driven ingestion pipelines reduce manual intervention.
+5. Stakeholders & Roles
+Sponsor: [To be filled]
+Program Manager: [To be filled]
+Technical Lead(s): [To be filled]
+Key Contributors: Data Engineering, Storage, and Analytics teams
+Program Office Contact: [To be filled]
+Other Stakeholders: Compliance, Security, and Business Units
+6. High-Level Design Overview
+Architecture Diagram:
+(See diagrams below)
+Key Components:
+Ingestion Layer: Automates data movement from tape to S3 using heuristics.
+Iceberg Catalog (Polaris): Central metadata/catalog service for all engines.
+Storage Layer: S3 Glacier Instant Retrieval for cost-effective archival.
+Query Engines: Spark, Snowflake, Trino, PyIceberg, etc.
+Lifecycle Management: Tag-driven policies for archival and retention.
+7. Key Considerations & Assumptions
+Query engine selection (Spark, Snowflake, etc.) is pending further evaluation.
+Schema evolution and partitioning must be supported for long-term data management.
+Tag-based archival requires admin-driven tagging and policy enforcement.
+UDW uses Nessie, but this solution will use Polaris.
+8. High-Level Milestones & Timeline
+Milestone	Target Date	Owner	Status
+Project Initiation	[TBD]	[TBD]	Planned
+Catalog Selection	[TBD]	[TBD]	Planned
+Storage Layer Implementation	[TBD]	[TBD]	Planned
+Query Engine Evaluation	[TBD]	[TBD]	Planned
+Interoperability Demonstration	[TBD]	[TBD]	Planned
+9. Risks & Mitigations
+Risk: Query engine compatibility issues
+Mitigation: Early PoC with Spark and Snowflake
+Risk: Data retrieval latency from Glacier
+Mitigation: Use Instant Retrieval tier and monitor access patterns
+Risk: Schema evolution complexity
+Mitigation: Leverage Iceberg’s schema evolution features and automate partition management
+10. Next Steps
+Finalize catalog selection (Polaris).
+Set up S3 Glacier Instant Retrieval buckets.
+Develop ingestion pipeline for tape-restored data.
+Define and implement tag-based archival policies.
+Demonstrate interoperability between Spark and Snowflake.
+11. Status Reporting & Communication Plan
+Update Frequency: Bi-weekly
+Reporting Format: Email and dashboard
+Distribution List: Project stakeholders, technical leads, business sponsors
